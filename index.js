@@ -1,11 +1,14 @@
-// server.mjs
-import { createServer } from 'node:http';
-const server = createServer((req, res) => {
-  res.writeHead(200, { 'Content-Type': 'text/plain' });
-  res.end('Hello mundo');
+const http = require('node:http');
+
+const hostname = '0.0.0.0';
+const port = 8097;
+
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  res.end('Hello, World!\n');
 });
-// starts a simple http server locally on port 3000
-server.listen(8097, '0.0.0.0', () => {
-  console.log('Listening on 0.0.0.0:8097');
-});
-// run with `node server.mjs`
+
+server.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
+}); 
